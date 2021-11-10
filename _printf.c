@@ -1,6 +1,6 @@
 #include "main.h"
 /*
- *
+ * _printf - function prints int and char
  **/
 
 int _printf(const char *format, ...)
@@ -11,32 +11,30 @@ int _printf(const char *format, ...)
 	va_list parameters;
 	void (*f)(va_list);
 
-	va_start(parameters,format);
-
-	while(format[i] != '\0')
-
+	va_start(parameters, format);
+	while (format[i] != '\0')
 	{
-		
-		if(format[i] != '%')
+		if (format[i] != '%')
 		{
 			*ptr = format[i];
 			ptr++;
 		}
 		else
 		{
-			match(format[i+1],parameters,ptr);
+			match(format[i + 1], parameters, ptr);
 		}
 	}
 	va_end(parameters);
-	_puts(buffer,ptr - (char*)buffer);
-	return(ptr -(char*)buffer);
+	_puts(buffer, ptr - (char *)buffer);
+	return (ptr - (char *) : wbuffer);
 }
 
 
 void p_string(va_list parameters, char *buff)
 {
-	char *ptr = va_arg(parameters,char*);
-	while(*ptr != '\0')
+	char *ptr = va_arg(parameters, char*);
+
+	while (*ptr != '\0')
 	{
 		*buff = *ptr;
 		buff++;
@@ -48,25 +46,25 @@ void p_string(va_list parameters, char *buff)
 
 void p_char(va_list parameters, char *buff)
 {
-	char c = va_arg(parameters,int);
+	char c = va_arg(parameters, int);
 	*buff = c;
 	buff++;
 
 }
 
-void match(char s,va_list parameters, char *buff)
+void match(char s, va_list parameters, char *buff)
 {
 	int i = 0;
 	vars_t func[] = {
-		{'s',p_string},
-		{'c',p_char},
+		{'s', p_string},
+		{'c', p_char},
 		{0, NULL}
 	};
-	while(func[i].f != NULL)
+	while (func[i].f != NULL)
 	{
-		if(s == func[i].op)
+		if (s == func[i].op)
 		{
-			func[i].f(parameters,buff);
+			func[i].f(parameters, buff);
 			return;
 		}
 		i++;
