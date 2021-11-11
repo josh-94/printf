@@ -21,44 +21,47 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			match(format[i + 1], parameters, ptr);
+			match(format[i + 1], parameters, &ptr);
+			i++;
 		}
+		i++;
 	}
 	va_end(parameters);
 	_puts(buffer, ptr - (char *)buffer);
-	return (ptr - (char *) : wbuffer);
+	return (ptr - (char *)buffer);
 }
 
 
-void p_string(va_list parameters, char *buff)
+void p_string(va_list parameters, char **buff)
 {
 	char *ptr = va_arg(parameters, char*);
 
 	while (*ptr != '\0')
 	{
-		*buff = *ptr;
-		buff++;
+		**buff = *ptr;
+		(*buff)++;
 		ptr++;
 	}
 
 
 }
 
-void p_char(va_list parameters, char *buff)
+void p_char(va_list parameters, char **buff)
 {
 	char c = va_arg(parameters, int);
-	*buff = c;
-	buff++;
+	**buff = c;
+	(*buff)++;
 
 }
 
-void match(char s, va_list parameters, char *buff)
+void match(char s, va_list parameters, char **buff)
 {
 	int i = 0;
 	vars_t func[] = {
 		{'s', p_string},
 		{'c', p_char},
 		{0, NULL}
+
 	};
 	while (func[i].f != NULL)
 	{
