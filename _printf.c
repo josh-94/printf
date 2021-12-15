@@ -9,8 +9,7 @@ int _printf(const char *format, ...)
 	char *ptr = buffer;
 	int i = 0;
 	va_list parameters;
-	void (*f)(va_list);
-
+	/*void (*f)(va_list);*/
 	va_start(parameters, format);
 	while (format[i] != '\0')
 	{
