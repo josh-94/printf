@@ -1,1 +1,64 @@
-man printf
+. \ "This is the Holberton student manual page
+.TH man 3 "15 DECEMBER 2021"
+
+.SH NAME
+_printf (): Take the input to make formatted prints.
+
+.SH SYNOPSIS
+#include "main.h"
+
+.SH Syntax
+int _printf (const char * format, ...)
+
+.SH DESCRIPTION
+The _printf () function takes one argument: a string of characters to print. 
+This string is made up of characters, each of which is printed exactly as it appears. 
+On the other hand, we have characters that normally print as expected, but when you add a specifier, they become special. 
+The format specifiers are:
+FORMAT generates a specific format relative to the input of the specifier.
+
+.SH Return value
+The _printf () function returns the number of characters printed (excluding the null byte used to finalize the output to strings).
+
+.B %c
+Print a character passed as a parameter.
+
+.B %s
+Prints a string of characters terminated with a null.
+
+.B %d
+Prints a signed decimal number.
+
+.B %i
+Converts an argument to unsigned decimal notation and prints it.
+
+.SH
+EXAMPLE
+
+.RS
+#include "main.h"
+
+int main (empty)
+{
+
+   _printf ("% s", String);
+
+   _printf ("I can print a character% s", 'A');
+
+   _printf ("I can print an integer% s", 12);
+
+   _printf ("The number is:% 05d", 1560);
+
+    return (0);
+}
+
+.RE
+
+.SH SEE ALSO
+printf (3)
+
+.SH ERRORS
+No known bugs.
+
+.SH AUTHOR
+Jeshua Cabanillas
